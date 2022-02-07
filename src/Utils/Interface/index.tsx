@@ -23,6 +23,15 @@ export interface IFilter {
   setIsToggleSelect: Function;
   buttonRef: React.RefObject<HTMLButtonElement>;
   onClickSelect: Function;
+  selected: string[];
+  setSelected: Function;
+}
+
+export interface IFilterMenu {
+  methodSelected: string[];
+  setMethodSelected: Function;
+  materalSelected: string[];
+  setMaterialSelected: Function;
 }
 
 export interface IModal {
