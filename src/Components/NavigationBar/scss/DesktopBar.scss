@@ -1,0 +1,34 @@
+@import '../../../Utils//Styles//mixin';
+
+.DesktopBar__Container {
+  @include navigationbar();
+  @include responsive(mobile) {
+    display: none;
+  }
+  height: 70px;
+  padding: 0 30px;
+  justify-content: space-between;
+  .DesktopBar__Logo {
+    cursor: pointer;
+    max-width: 120px;
+  }
+  .DesktopBar__Wrapper {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    .DesktopBar__Company {
+      display: flex;
+      align-items: center;
+      > img {
+        height: 15px;
+        margin-right: 10px;
+      }
+      > p {
+        margin-right: 20px;
+      }
+    }
+    .DesktopBar__Divider {
+      margin-right: 20px;
+    }
+  }
+}

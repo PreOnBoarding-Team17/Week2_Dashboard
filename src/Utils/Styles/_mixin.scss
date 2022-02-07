@@ -1,7 +1,18 @@
+@import './variables';
+
 @mixin responsive($size) {
   @if $size == 'mobile' {
     @media screen and (max-width: 600px) {
       @content;
     }
   }
+}
+
+@mixin navigationbar() {
+  background-color: $darkblue;
+  color: white;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12);
 }

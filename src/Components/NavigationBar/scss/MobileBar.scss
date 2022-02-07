@@ -1,0 +1,20 @@
+@import '../../../Utils//Styles//mixin';
+
+.MobileBar__Container {
+  display: none;
+  height: 44px;
+  padding-left: 20px;
+  @include responsive(mobile) {
+    display: block;
+    @include navigationbar();
+  }
+  .MobileBar__Menu {
+    cursor: pointer;
+    height: 24px;
+    margin-right: 20px;
+  }
+  .MobileBar__Logo {
+    cursor: pointer;
+    height: 12px;
+  }
+}
