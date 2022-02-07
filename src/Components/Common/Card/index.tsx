@@ -1,9 +1,7 @@
 import React from 'react';
-import 'Components/Common/Card/scss/Card.scss';
-import { CARD_ELEMENTS_NUMBER, CARD_ELEMENTS_EXTRA } from 'Utils/Constants';
+import { CARD_ELEMENTS } from 'Utils/Constants';
 import { CardProps } from 'Utils/Interface';
-
-const STATUSTRUE = '상담중';
+import 'Components/Common/Card/scss/Card.scss';
 
 const Card: React.FC<CardProps> = ({ data }) => {
   const {
@@ -18,8 +16,11 @@ const Card: React.FC<CardProps> = ({ data }) => {
     status,
   } = data;
 
-  const cardElementNumber = [count, amount];
-  const cardElementExtra = [method, material];
+  const CONSULTINGSTATUS: boolean = status === '상담중' ? true : false;
+  const cardElementsData =
+    count !== undefined
+      ? [count, amount, method, material]
+      : [docs, amount, method, material];
 
   return (
     <div className="card-wrapper">
@@ -27,7 +28,7 @@ const Card: React.FC<CardProps> = ({ data }) => {
         <div className="card__header">
           <div className="card__header--title">
             {title}
-            {status === STATUSTRUE && (
+            {CONSULTINGSTATUS && (
               <div className="card__header--title-active">상담중</div>
             )}
           </div>
@@ -36,25 +37,15 @@ const Card: React.FC<CardProps> = ({ data }) => {
         </div>
 
         <div className="card__elements">
-          {CARD_ELEMENTS_NUMBER.map((element, index) => (
+          {cardElementsData.map((element, index) => (
             <div key={index} className="card__elements--content">
-              <div className="card__elements--content-element">{element}</div>
-              <div className="card__elements--content-data">
-                {typeof cardElementNumber[index] === 'number'
-                  ? cardElementNumber[index]
-                  : docs}
-                개
+              <div className="card__elements--content-element">
+                {CARD_ELEMENTS[index]}
               </div>
-            </div>
-          ))}
-
-          {CARD_ELEMENTS_EXTRA.map((element, index) => (
-            <div key={index} className="card__elements--content">
-              <div className="card__elements--content-element">{element}</div>
               <div className="card__elements--content-data">
-                {cardElementExtra[index]
-                  .reduce((prev, cur) => prev + cur + ', ', '')
-                  .slice(0, -2)}
+                {typeof element === 'number'
+                  ? `${element}개`
+                  : element?.join(',')}
               </div>
             </div>
           ))}
