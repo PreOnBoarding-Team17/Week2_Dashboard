@@ -10,7 +10,11 @@ export interface DataInterface {
   method: string[];
   material: string[];
 }
-
 export interface CardProps {
   data: DataInterface;
+}
+export interface IFilter {
+  title: string;
+  name: string;
+  options: string[];
 }
