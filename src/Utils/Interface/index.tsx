@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface DataInterface {
   id: number;
   title: string;
@@ -15,6 +17,10 @@ export interface IFilter {
   title: string;
   name: string;
   options: string[];
+  isToggleSelect: boolean;
+  setIsToggleSelect: Function;
+  buttonRef: React.RefObject<HTMLButtonElement>;
+  onClickSelect: Function;
 }
 
 export interface IModal {
