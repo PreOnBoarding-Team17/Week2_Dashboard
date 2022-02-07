@@ -1,0 +1,7 @@
+@mixin responsive($size) {
+  @if $size == 'mobile' {
+    @media screen and (max-width: 600px) {
+      @content;
+    }
+  }
+}
