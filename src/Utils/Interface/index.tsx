@@ -10,3 +10,9 @@ export interface DataInterface {
   method: string[];
   material: string[];
 }
+
+export interface IFilter {
+  title: string;
+  name: string;
+  options: string[];
+}
