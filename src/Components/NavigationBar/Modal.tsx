@@ -1,14 +1,10 @@
 import React from 'react';
 import Logo from 'Assets/Logo_Blue.png';
 import CompanyIcon from 'Assets/CompanyIcon_Black.png';
+import { IModal } from 'Utils/Interface';
 import 'Components/NavigationBar/scss/Modal.scss';
 
-interface ModalProps {
-  data: boolean;
-  handler: () => void;
-}
-
-export default function Modal({ data, handler }: ModalProps) {
+export default function Modal({ data, handler }: IModal) {
   return (
     <>
       <div className={data ? 'Modal__Container' : 'Modal__Container close'}>
