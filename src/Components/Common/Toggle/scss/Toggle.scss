@@ -1,1 +1,48 @@
-//
+@import '../../../../Utils/Styles/variables';
+
+.Toggle__Container {
+  display: flex;
+  .Toggle__Wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 40px;
+    height: 18px;
+    border-radius: 1em;
+    margin-right: 10px;
+    > input {
+      width: 0;
+      height: 0;
+    }
+    input:checked + .Toggle__Slider {
+      background-color: #bbdefb;
+    }
+    input:checked + .Toggle__Slider:before {
+      background-color: $blue;
+      transform: translateX(26px);
+    }
+    .Toggle__Slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #bbdefb;
+      border-radius: 1em;
+      transition: 0.3s;
+    }
+    .Toggle__Slider:before {
+      position: absolute;
+      content: '';
+      height: 24px;
+      width: 24px;
+      left: -5px;
+      bottom: -2px;
+      background-color: $blue;
+      box-shadow: 2.5px 2.5px 2.5px #9f9f9f;
+      transition: 0.3s;
+      border-radius: 50%;
+    }
+  }
+}
