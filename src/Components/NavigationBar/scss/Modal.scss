@@ -1,0 +1,52 @@
+.Modal__Container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 12;
+  width: 280px;
+  height: 100%;
+  background-color: white;
+  color: #323d45;
+  transform: translateX(0);
+  transition: transform 0.3s ease-out;
+  box-shadow: 2px 0 2px rgba(0, 0, 0, 0.1);
+  .Modal__LogoBox {
+    height: 44px;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 20px;
+    > img {
+      height: 12px;
+    }
+  }
+  .Modal__Menu {
+    cursor: pointer;
+    padding-left: 30px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    > img {
+      height: 15px;
+      margin-right: 10px;
+    }
+  }
+}
+.Modal__Overlay {
+  position: fixed;
+  top: 0;
+  z-index: 11;
+  height: 100%;
+  width: 100vw;
+  opacity: 0.5;
+  background-color: black;
+  transition: transform 0.3s ease-in;
+}
+.close {
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-out;
+}
+.hide {
+  display: none;
+}
