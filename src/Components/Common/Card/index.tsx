@@ -1,9 +1,6 @@
 import React from 'react';
 import 'Components/Common/Card/scss/Card.scss';
-import {
-  CARDLIST_ELEMENT_NUMBER,
-  CARDLIST_ELEMENT_EXTRA,
-} from 'Utils/Constants';
+import { CARD_ELEMENTS_NUMBER, CARD_ELEMENTS_EXTRA } from 'Utils/Constants';
 import { CardProps } from 'Utils/Interface';
 
 const STATUSTRUE = '상담중';
@@ -39,7 +36,7 @@ const Card: React.FC<CardProps> = ({ data }) => {
         </div>
 
         <div className="card__elements">
-          {CARDLIST_ELEMENT_NUMBER.map((element, index) => (
+          {CARD_ELEMENTS_NUMBER.map((element, index) => (
             <div key={index} className="card__elements--content">
               <div className="card__elements--content-element">{element}</div>
               <div className="card__elements--content-data">
@@ -51,7 +48,7 @@ const Card: React.FC<CardProps> = ({ data }) => {
             </div>
           ))}
 
-          {CARDLIST_ELEMENT_EXTRA.map((element, index) => (
+          {CARD_ELEMENTS_EXTRA.map((element, index) => (
             <div key={index} className="card__elements--content">
               <div className="card__elements--content-element">{element}</div>
               <div className="card__elements--content-data">
