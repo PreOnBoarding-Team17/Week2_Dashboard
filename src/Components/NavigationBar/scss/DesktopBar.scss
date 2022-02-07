@@ -1,0 +1,36 @@
+@import '../../../Utils/Styles/variables';
+
+.DesktopBar__Container {
+  background-color: $darkblue;
+  color: white;
+  font-size: 14px;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12);
+  .DesktopBar__Logo {
+    cursor: pointer;
+    max-width: 120px;
+  }
+  .DesktopBar__Wrapper {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    .DesktopBar__Company {
+      display: flex;
+      align-items: center;
+      > img {
+        height: 15px;
+        margin-right: 10px;
+      }
+      > p {
+        margin-right: 20px;
+      }
+    }
+    .DesktopBar__Divider {
+      margin-right: 20px;
+    }
+  }
+}
