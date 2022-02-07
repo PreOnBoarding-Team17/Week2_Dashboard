@@ -3,8 +3,14 @@ import { METHOD, METHOD_NAME, MATERIAL, MATERIAL_NAME } from 'Utils/Constants';
 import Filter from 'Components/Common/Filter';
 import Toggle from 'Components/Common/Toggle';
 import 'Components/Dashboard/scss/FilterMenu.scss';
+import { IFilterMenu } from 'Utils/Interface';
 
-function FilterMenu() {
+const FilterMenu: React.FC<IFilterMenu> = ({
+  methodSelected,
+  setMethodSelected,
+  materalSelected,
+  setMaterialSelected,
+}) => {
   const [toggle, setToggle] = useState<boolean>(false);
   const [isToggleSelect, setIsToggleSelect] = useState<string>('');
   const methodRef = useRef<HTMLButtonElement>(null);
@@ -34,7 +40,7 @@ function FilterMenu() {
     }
   };
 
-  console.log(toggle);
+  // console.log(toggle);
   return (
     <div className="filter">
       <div className="filter__select-item">
@@ -46,6 +52,8 @@ function FilterMenu() {
           setIsToggleSelect={setIsToggleSelect}
           buttonRef={methodRef}
           onClickSelect={onClickSelect}
+          selected={methodSelected}
+          setSelected={setMethodSelected}
         />
         <Filter
           title={MATERIAL_NAME}
@@ -55,6 +63,8 @@ function FilterMenu() {
           setIsToggleSelect={setIsToggleSelect}
           buttonRef={materialRef}
           onClickSelect={onClickSelect}
+          selected={materalSelected}
+          setSelected={setMaterialSelected}
         />
       </div>
       <div className="filter__toggle-item">
@@ -62,6 +72,6 @@ function FilterMenu() {
       </div>
     </div>
   );
-}
+};
 
 export default FilterMenu;
