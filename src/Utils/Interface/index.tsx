@@ -16,3 +16,12 @@ export interface IFilter {
   name: string;
   options: string[];
 }
+
+export interface IModal {
+  data: boolean;
+  handler: () => void;
+}
+
+export interface IToggle {
+  handleToggle: () => void;
+}
