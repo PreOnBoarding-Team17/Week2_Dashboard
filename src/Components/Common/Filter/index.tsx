@@ -1,43 +1,47 @@
-import React from 'react';
-import { METHOD, METHOD_NAME, MATERIAL, MATERIAL_NAME } from 'Utils/Constants';
+import React, { useState } from 'react';
+import 'Components/Common/Filter/scss/Filter.scss';
+import { IFilter } from 'Utils/Interface';
+import ArrowDownIcon from 'Assets/ArrowDown.png';
 
-function Filter() {
+const Filter: React.FC<IFilter> = ({ title, name, options }) => {
+  const [isToggle, setIsToggle] = useState<boolean>(false);
+
+  const onClickSelect = () => {
+    // e.preventDefault();
+    console.log(!isToggle);
+    setIsToggle(!isToggle);
+  };
+
   return (
-    <div className="filter__container">
-      <div className="filter__select-item">
-        <div className="filter__container__method">
-          <select name="method" id="">
-            {[METHOD_NAME, ...METHOD].map((method, index) => {
-              const val = index === 0 ? '' : method;
+    <div className={`select-item filter__select-item__${name}`}>
+      <form name={name}>
+        <button
+          type="button"
+          className="select-item__title"
+          onClick={onClickSelect}
+        >
+          {title}
+          <img src={ArrowDownIcon} alt="arrow down" />
+        </button>
+        {isToggle && (
+          <ul className="select-item__checkbox-wrap">
+            {options.map((option: string, index: number) => {
               return (
-                <option value={val} key={index}>
-                  {method}
-                </option>
+                <li key={index} className="checkbox-item">
+                  <input type="checkbox" id={option} />
+
+                  <label htmlFor={option}>
+                    <span></span>
+                    {option}
+                  </label>
+                </li>
               );
             })}
-          </select>
-        </div>
-        <div className="filter__container__material">
-          <select name="material" id="">
-            {[MATERIAL_NAME, ...MATERIAL].map((material, index) => {
-              const val = index === 0 ? '' : material;
-              return (
-                <option value={val} key={index}>
-                  {material}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-      </div>
-      <div className="filter__toggle-item">
-        <div className="filter__container__counseling">
-          <input type="checkbox" id="counseling" />
-          <label htmlFor="counseling">상담 중인 요청만 보기</label>
-        </div>
-      </div>
+          </ul>
+        )}
+      </form>
     </div>
   );
-}
+};
 
 export default Filter;
