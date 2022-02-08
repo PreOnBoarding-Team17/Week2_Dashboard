@@ -20,7 +20,6 @@ export interface IFilter {
   name: string;
   options: string[];
   isToggleSelect: boolean;
-  setIsToggleSelect: (selected: string) => void;
   buttonRef: React.RefObject<HTMLButtonElement>;
   onClickSelect: (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
