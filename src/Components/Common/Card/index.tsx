@@ -60,4 +60,4 @@ const Card: React.FC<CardProps> = ({ data }) => {
   );
 };
 
-export default Card;
+export default React.memo(Card);

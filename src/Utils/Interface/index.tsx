@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface DataInterface {
   id: number;
   title: string;
@@ -17,6 +19,19 @@ export interface IFilter {
   title: string;
   name: string;
   options: string[];
+  isToggleSelect: boolean;
+  setIsToggleSelect: Function;
+  buttonRef: React.RefObject<HTMLButtonElement>;
+  onClickSelect: Function;
+  selected: string[];
+  setSelected: Function;
+}
+
+export interface IFilterMenu {
+  methodSelected: string[];
+  setMethodSelected: Function;
+  materalSelected: string[];
+  setMaterialSelected: Function;
 }
 
 export interface IModal {

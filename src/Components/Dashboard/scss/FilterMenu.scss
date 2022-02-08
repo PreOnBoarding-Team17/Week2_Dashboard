@@ -1,10 +1,24 @@
+@import '/src/Utils/Styles/mixin';
+
 .filter {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  @include media('(max-width:650px)') {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
   &__select-item {
     display: flex;
   }
   &__toggle-item {
+    @include media('(max-width:650px)') {
+      margin: 25px 0px 15px 0px;
+    }
     &__counseling {
     }
   }
