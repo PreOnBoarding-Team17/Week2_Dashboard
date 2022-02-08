@@ -38,7 +38,6 @@ const FilterMenu: React.FC<IFilterMenu> = ({
     materialRef.current?.classList.remove('focused');
   };
 
-  // console.log(toggle);
   return (
     <div className="filter">
       <div className="filter__select-item">
