@@ -7,19 +7,15 @@ import { IFilterMenu } from 'Utils/Interface';
 import RefreshIcon from 'Assets/RefreshIcon.png';
 
 const FilterMenu: React.FC<IFilterMenu> = ({
+  handleToggle,
   selectedMethod,
   setSelectedMethod,
   selectedMaterial,
   setSelectedMaterial,
 }) => {
-  const [toggle, setToggle] = useState<boolean>(false);
   const [isToggleSelect, setIsToggleSelect] = useState<string>('');
   const methodRef = useRef<HTMLButtonElement>(null);
   const materialRef = useRef<HTMLButtonElement>(null);
-
-  const handleToggle = () => {
-    setToggle(!toggle);
-  };
 
   const onClickSelect = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,

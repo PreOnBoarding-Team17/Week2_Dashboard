@@ -31,6 +31,7 @@ export interface IFilter {
 }
 
 export interface IFilterMenu {
+  handleToggle: () => void;
   selectedMethod: string[];
   setSelectedMethod: (arr: string[]) => void;
   selectedMaterial: string[];

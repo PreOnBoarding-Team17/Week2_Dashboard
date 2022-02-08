@@ -4,7 +4,7 @@
   display: none;
   height: 44px;
   padding-left: 20px;
-  @include responsive(mobile) {
+  @include responsive(mobile__medium) {
     display: block;
     @include navigationbar();
   }
