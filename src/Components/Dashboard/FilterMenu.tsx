@@ -3,23 +3,21 @@ import { METHOD, METHOD_NAME, MATERIAL, MATERIAL_NAME } from 'Utils/Constants';
 import Filter from 'Components/Common/Filter';
 import Toggle from 'Components/Common/Toggle';
 import 'Components/Dashboard/scss/FilterMenu.scss';
+import { IFilterMenu } from 'Utils/Interface';
 import RefreshIcon from 'Assets/RefreshIcon.png';
-import useFilter from 'Utils/Hooks/useFilter';
 
-export default function FilterMenu() {
+const FilterMenu: React.FC<IFilterMenu> = ({
+  toggle,
+  handleReset,
+  handleToggle,
+  selectedMethod,
+  setSelectedMethod,
+  selectedMaterial,
+  setSelectedMaterial,
+}) => {
   const [isToggleSelect, setIsToggleSelect] = useState<string>('');
   const methodRef = useRef<HTMLButtonElement>(null);
   const materialRef = useRef<HTMLButtonElement>(null);
-
-  const {
-    toggle,
-    handleToggle,
-    handleReset,
-    method,
-    material,
-    setMethod,
-    setMaterial,
-  } = useFilter();
 
   const onClickSelect = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -50,8 +48,8 @@ export default function FilterMenu() {
           isToggleSelect={isToggleSelect === 'method'}
           buttonRef={methodRef}
           onClickSelect={onClickSelect}
-          selected={method}
-          setSelected={setMethod}
+          selected={selectedMethod}
+          setSelected={setSelectedMethod}
         />
         <Filter
           title={MATERIAL_NAME}
@@ -60,10 +58,10 @@ export default function FilterMenu() {
           isToggleSelect={isToggleSelect === 'material'}
           buttonRef={materialRef}
           onClickSelect={onClickSelect}
-          selected={material}
-          setSelected={setMaterial}
+          selected={selectedMaterial}
+          setSelected={setSelectedMaterial}
         />
-        {(method.length + material.length > 0 || toggle) && (
+        {(selectedMethod.length + selectedMaterial.length > 0 || toggle) && (
           <button className="filter__select-reset" onClick={handleFilterReset}>
             <img src={RefreshIcon} alt="필터링 리셋" />
             필터링 리셋
@@ -75,4 +73,6 @@ export default function FilterMenu() {
       </div>
     </div>
   );
-}
+};
+
+export default FilterMenu;
