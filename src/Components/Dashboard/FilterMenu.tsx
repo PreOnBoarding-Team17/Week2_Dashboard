@@ -4,13 +4,16 @@ import Filter from 'Components/Common/Filter';
 import Toggle from 'Components/Common/Toggle';
 import 'Components/Dashboard/scss/FilterMenu.scss';
 import { IFilterMenu } from 'Utils/Interface';
+import RefreshIcon from 'Assets/RefreshIcon.png';
 
 const FilterMenu: React.FC<IFilterMenu> = ({
+  toggle,
+  handleReset,
   handleToggle,
-  methodSelected,
-  setMethodSelected,
-  materalSelected,
-  setMaterialSelected,
+  selectedMethod,
+  setSelectedMethod,
+  selectedMaterial,
+  setSelectedMaterial,
 }) => {
   const [isToggleSelect, setIsToggleSelect] = useState<string>('');
   const methodRef = useRef<HTMLButtonElement>(null);
@@ -21,19 +24,18 @@ const FilterMenu: React.FC<IFilterMenu> = ({
     name: string
   ) => {
     e.preventDefault();
-
-    if (name === 'method') {
-      methodRef.current?.classList.toggle('focused');
-    } else if (name === 'material') {
-      materialRef.current?.classList.toggle('focused');
-    }
     if (isToggleSelect === '') {
       setIsToggleSelect(name);
     } else {
       setIsToggleSelect('');
-      methodRef.current?.classList.remove('focused');
-      materialRef.current?.classList.remove('focused');
     }
+  };
+
+  const handleFilterReset = () => {
+    handleReset();
+    setIsToggleSelect('');
+    methodRef.current?.classList.remove('focused');
+    materialRef.current?.classList.remove('focused');
   };
 
   // console.log(toggle);
@@ -45,26 +47,30 @@ const FilterMenu: React.FC<IFilterMenu> = ({
           name="method"
           options={METHOD}
           isToggleSelect={isToggleSelect === 'method'}
-          setIsToggleSelect={setIsToggleSelect}
           buttonRef={methodRef}
           onClickSelect={onClickSelect}
-          selected={methodSelected}
-          setSelected={setMethodSelected}
+          selected={selectedMethod}
+          setSelected={setSelectedMethod}
         />
         <Filter
           title={MATERIAL_NAME}
           name="material"
           options={MATERIAL}
           isToggleSelect={isToggleSelect === 'material'}
-          setIsToggleSelect={setIsToggleSelect}
           buttonRef={materialRef}
           onClickSelect={onClickSelect}
-          selected={materalSelected}
-          setSelected={setMaterialSelected}
+          selected={selectedMaterial}
+          setSelected={setSelectedMaterial}
         />
+        {(selectedMethod.length + selectedMaterial.length > 0 || toggle) && (
+          <button className="filter__select-reset" onClick={handleFilterReset}>
+            <img src={RefreshIcon} alt="필터링 리셋" />
+            필터링 리셋
+          </button>
+        )}
       </div>
       <div className="filter__toggle-item">
-        <Toggle handleToggle={handleToggle} />
+        <Toggle handleToggle={handleToggle} toggle={toggle} />
       </div>
     </div>
   );
