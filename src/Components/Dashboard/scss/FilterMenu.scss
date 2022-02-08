@@ -7,7 +7,7 @@
   align-items: center;
   width: 100%;
 
-  @include media('(max-width:650px)') {
+  @include responsive(mobile) {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
@@ -37,7 +37,7 @@
   }
 
   &__toggle-item {
-    @include media('(max-width:650px)') {
+    @include responsive(mobile) {
       margin: 25px 0px 15px 0px;
     }
     &__counseling {

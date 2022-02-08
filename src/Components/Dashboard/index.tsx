@@ -23,6 +23,10 @@ const Dashboard: React.FC = () => {
           return <Card key={data['id']} data={data} />;
         })}
       </div>
+
+      {cardDatas.length === 0 && (
+        <div className="card-zero">조건에 맞는 견적 요청이 없습니다.</div>
+      )}
     </div>
   );
 };

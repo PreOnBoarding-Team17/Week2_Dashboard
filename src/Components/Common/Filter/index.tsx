@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback } from 'react';
 import 'Components/Common/Filter/scss/Filter.scss';
 import { IFilter } from 'Utils/Interface';
 
@@ -20,6 +20,7 @@ const Filter: React.FC<IFilter> = ({
       } else {
         if (selected.filter((item: string) => item !== option).length === 0)
           buttonRef.current?.classList.remove('focused');
+
         setSelected(selected.filter((item: string) => item !== option));
       }
     },
