@@ -1,0 +1,97 @@
+@import '../../../../Utils/Styles/variables';
+
+.select-item {
+  position: relative;
+  margin: 4px 4px 4px 0;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 12px;
+    border: 1px solid $gray;
+    background-color: white;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+
+    & .select-item__title__count {
+      font-size: 12px;
+      margin: 0;
+      padding-bottom: 1px;
+    }
+
+    & .arrow-down-icon {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background-image: url('../../../../Assets/ArrowDown_Gray.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      margin: 0 0 2px 12px;
+    }
+
+    &.focused {
+      background-color: $darkblue;
+      border: 1px solid $gray;
+      color: white;
+
+      & .arrow-down-icon {
+        background-image: url('../../../../Assets/ArrowDown_White.png');
+      }
+    }
+
+    &:hover {
+      border: 1px solid $blue;
+    }
+  }
+
+  &__checkbox-wrap {
+    position: absolute;
+    top: 38px;
+    width: 130px;
+    border: 1px solid $gray;
+    border-radius: 4px;
+    background-color: white;
+    box-sizing: border-box;
+    padding: 17px 12px;
+    z-index: 10;
+
+    & .checkbox-item {
+      margin-bottom: 10px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      & input[type='checkbox'] {
+        display: none;
+      }
+
+      & label {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        box-sizing: border-box;
+        cursor: pointer;
+
+        & span {
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          border: 2px solid #939fa5;
+          border-radius: 2px;
+          margin-right: 10px;
+        }
+      }
+
+      & input[type='checkbox']:checked + label span {
+        background-color: $blue;
+        border: 2px solid $blue;
+        background-image: url('../../../../Assets/CheckIcon.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+      }
+    }
+  }
+}

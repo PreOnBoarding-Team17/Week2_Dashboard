@@ -1,0 +1,46 @@
+@import '/src/Utils/Styles/mixin';
+@import '/src/Utils/Styles/variables';
+
+.filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  @include responsive(mobile) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  &__select-item {
+    display: flex;
+
+    & .filter__select-reset {
+      display: flex;
+      align-items: center;
+      color: $blue;
+      background-color: transparent;
+      border: none;
+      font-size: 12px;
+      font-weight: normal;
+      line-height: 1.6;
+      cursor: pointer;
+
+      & img {
+        margin-bottom: 2px;
+        width: 16px;
+        height: 16px;
+        margin-right: 12px;
+      }
+    }
+  }
+
+  &__toggle-item {
+    @include responsive(mobile) {
+      margin: 25px 0px 15px 0px;
+    }
+    &__counseling {
+    }
+  }
+}
