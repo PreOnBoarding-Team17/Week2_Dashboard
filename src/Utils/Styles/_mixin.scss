@@ -1,10 +1,28 @@
 @import './variables';
 
-@mixin responsive($size) {
-  @if $size == 'mobile' {
-    @media screen and (max-width: 600px) {
+@mixin responsive($device) {
+  @if $device == 'tablet__large' {
+    @media screen and (max-width: 1280px) {
       @content;
     }
+  } @else if $device == 'tablet' {
+    @media screen and (max-width: 1024px) {
+      @content;
+    }
+  } @else if $device == 'mobile' {
+    @media screen and (max-width: 768px) {
+      @content;
+    }
+  } @else if $device == 'mobile__small' {
+    @media screen and (max-width: 500px) {
+      @content;
+    }
+  }
+}
+
+@mixin media($queryString) {
+  @media #{$queryString} {
+    @content;
   }
 }
 

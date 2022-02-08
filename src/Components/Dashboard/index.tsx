@@ -8,9 +8,11 @@ import 'Components/Dashboard/scss/Dashboard.scss';
 
 const Dashboard: React.FC = () => {
   const [datas, setDatas] = useState<DataInterface[]>([]);
-  const [methodSelected, setMethodSelected] = useState<string[]>([]);
-  const [materalSelected, setMaterialSelected] = useState<string[]>([]);
-  const requestGET = async () => {
+  const [selectedMethod, setSelectedMethod] = useState<string[]>([]);
+  const [selectedMaterial, setSelectedMaterial] = useState<string[]>([]);
+  const [toggle, setToggle] = useState<boolean>(false);
+
+  const requestGET = async (): Promise<void> => {
     await callAPI.get('/').then((res) => setDatas(res.data));
   };
 
@@ -27,15 +29,28 @@ const Dashboard: React.FC = () => {
         </h3>
       </div>
       <FilterMenu
-        methodSelected={methodSelected}
-        setMethodSelected={setMethodSelected}
-        materalSelected={materalSelected}
-        setMaterialSelected={setMaterialSelected}
+        methodSelected={selectedMethod}
+        setMethodSelected={setSelectedMethod}
+        materalSelected={selectedMaterial}
+        setMaterialSelected={setSelectedMaterial}
       />
       <div className="dash-board">
-        {datas.map((data: DataInterface) => (
-          <Card key={data['id']} data={data} />
-        ))}
+        {datas.map((data: DataInterface) => {
+          if (toggle && data.status !== '상담중') return null;
+          else if (
+            selectedMethod.length > 0 &&
+            selectedMethod.filter((element) => data.method.includes(element))
+          )
+            return null;
+          else if (
+            selectedMaterial.length > 0 &&
+            selectedMaterial.filter((element) =>
+              data.material.includes(element)
+            )
+          )
+            return null;
+          return <Card key={data['id']} data={data} />;
+        })}
       </div>
     </div>
   );
