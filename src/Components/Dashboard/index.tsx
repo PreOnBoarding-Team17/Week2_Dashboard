@@ -78,10 +78,10 @@ const Dashboard: React.FC = () => {
       </div>
       <FilterMenu
         handleToggle={handleToggle}
-        methodSelected={selectedMethod}
-        setMethodSelected={setSelectedMethod}
-        materalSelected={selectedMaterial}
-        setMaterialSelected={setSelectedMaterial}
+        selectedMethod={selectedMethod}
+        setSelectedMethod={setSelectedMethod}
+        selectedMaterial={selectedMaterial}
+        setSelectedMaterial={setSelectedMaterial}
       />
       <div className="dash-board">
         {datas.map((data: DataInterface) => {
