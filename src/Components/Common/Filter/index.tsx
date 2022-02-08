@@ -15,9 +15,11 @@ const Filter: React.FC<IFilter> = ({
   const onChangeCheckbox = useCallback(
     (option: string) => {
       if (selected.find((item: string) => item === option) === undefined) {
+        console.log([...selected, option]);
         buttonRef.current?.classList.add('focused');
         setSelected([...selected, option]);
       } else {
+        console.log(selected.filter((item: string) => item !== option));
         if (selected.filter((item: string) => item !== option).length === 0)
           buttonRef.current?.classList.remove('focused');
 
