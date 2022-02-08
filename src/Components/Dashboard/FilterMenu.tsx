@@ -3,21 +3,23 @@ import { METHOD, METHOD_NAME, MATERIAL, MATERIAL_NAME } from 'Utils/Constants';
 import Filter from 'Components/Common/Filter';
 import Toggle from 'Components/Common/Toggle';
 import 'Components/Dashboard/scss/FilterMenu.scss';
-import { IFilterMenu } from 'Utils/Interface';
 import RefreshIcon from 'Assets/RefreshIcon.png';
+import useFilter from 'Utils/Hooks/useFilter';
 
-const FilterMenu: React.FC<IFilterMenu> = ({
-  toggle,
-  handleReset,
-  handleToggle,
-  selectedMethod,
-  setSelectedMethod,
-  selectedMaterial,
-  setSelectedMaterial,
-}) => {
+export default function FilterMenu() {
   const [isToggleSelect, setIsToggleSelect] = useState<string>('');
   const methodRef = useRef<HTMLButtonElement>(null);
   const materialRef = useRef<HTMLButtonElement>(null);
+
+  const {
+    toggle,
+    handleToggle,
+    handleReset,
+    method,
+    material,
+    setMethod,
+    setMaterial,
+  } = useFilter();
 
   const onClickSelect = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -38,7 +40,6 @@ const FilterMenu: React.FC<IFilterMenu> = ({
     materialRef.current?.classList.remove('focused');
   };
 
-  // console.log(toggle);
   return (
     <div className="filter">
       <div className="filter__select-item">
@@ -49,8 +50,8 @@ const FilterMenu: React.FC<IFilterMenu> = ({
           isToggleSelect={isToggleSelect === 'method'}
           buttonRef={methodRef}
           onClickSelect={onClickSelect}
-          selected={selectedMethod}
-          setSelected={setSelectedMethod}
+          selected={method}
+          setSelected={setMethod}
         />
         <Filter
           title={MATERIAL_NAME}
@@ -59,10 +60,10 @@ const FilterMenu: React.FC<IFilterMenu> = ({
           isToggleSelect={isToggleSelect === 'material'}
           buttonRef={materialRef}
           onClickSelect={onClickSelect}
-          selected={selectedMaterial}
-          setSelected={setSelectedMaterial}
+          selected={material}
+          setSelected={setMaterial}
         />
-        {(selectedMethod.length + selectedMaterial.length > 0 || toggle) && (
+        {(method.length + material.length > 0 || toggle) && (
           <button className="filter__select-reset" onClick={handleFilterReset}>
             <img src={RefreshIcon} alt="필터링 리셋" />
             필터링 리셋
@@ -74,6 +75,4 @@ const FilterMenu: React.FC<IFilterMenu> = ({
       </div>
     </div>
   );
-};
-
-export default FilterMenu;
+}

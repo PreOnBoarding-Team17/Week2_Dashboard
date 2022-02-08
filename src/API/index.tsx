@@ -1,13 +1,9 @@
-import axios, { AxiosInstance } from 'axios';
-import { DataInterface } from 'Utils/Interface';
+import axios from 'axios';
 
 const BASE_URL = 'http://localhost:4000/requests';
 
-export const callAPI: AxiosInstance = axios.create({
-  baseURL: `${BASE_URL}`,
-});
-
 export const getAPI = async () => {
-  const response = await axios.get<DataInterface>(BASE_URL);
-  return response.data;
+  const response = await axios.get(BASE_URL);
+  const data = await response.data;
+  return data;
 };
