@@ -8,6 +8,12 @@
   }
 }
 
+@mixin media($queryString) {
+  @media #{$queryString} {
+    @content;
+  }
+}
+
 @mixin navigationbar() {
   background-color: $darkblue;
   color: white;

@@ -1,6 +1,6 @@
 import React from 'react';
-import { CARD_ELEMENTS } from 'Utils/Constants';
 import { CardProps } from 'Utils/Interface';
+import { CARD_ELEMENTS } from 'Utils/Constants';
 import 'Components/Common/Card/scss/Card.scss';
 
 const Card: React.FC<CardProps> = ({ data }) => {
@@ -17,7 +17,7 @@ const Card: React.FC<CardProps> = ({ data }) => {
   } = data;
 
   const CONSULTINGSTATUS: boolean = status === '상담중' ? true : false;
-  const cardElementsData =
+  const cardElementsData: (number | string[] | undefined)[] =
     count !== undefined
       ? [count, amount, method, material]
       : [docs, amount, method, material];

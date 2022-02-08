@@ -1,9 +1,18 @@
+@import '/src/Utils/Styles/mixin';
+
 .dash-board {
-  padding: 0 80px;
+  padding: 0 90px;
   width: 100%;
   height: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   box-sizing: border-box;
+
+  @include media('(max-width: 1331px)') {
+    justify-content: space-around;
+  }
+  @include media('(min-width: 1716px)') {
+    justify-content: flex-start;
+  }
 }

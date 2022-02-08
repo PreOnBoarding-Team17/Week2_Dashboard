@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import { DataInterface } from 'Utils/Interface';
 
 const BASE_URL = 'http://localhost:4000/requests';
 
-export const callAPI = axios.create({
+export const callAPI: AxiosInstance = axios.create({
   baseURL: `${BASE_URL}`,
 });
 

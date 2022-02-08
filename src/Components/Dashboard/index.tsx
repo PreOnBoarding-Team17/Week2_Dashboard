@@ -7,7 +7,7 @@ import 'Components/Dashboard/scss/Dashboard.scss';
 
 const Dashboard: React.FC = () => {
   const [datas, setDatas] = useState<DataInterface[]>([]);
-  const requestGET = async () => {
+  const requestGET = async (): Promise<void> => {
     await callAPI.get('/').then((res) => setDatas(res.data));
   };
 
