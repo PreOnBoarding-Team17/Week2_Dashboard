@@ -23,9 +23,11 @@
   },
   "scripts": {
     "start": "node server",
-    "start:dev": "cross-env NODE_PATH=src react-scripts start",
+    "start:dev": "react-scripts start",
     "build": "cross-env NODE_PATH=src react-scripts build",
-    "heroku-postbuild": "cross-env NODE_PATH=src npm run build"
+    "heroku-postbuild": "cross-env NODE_PATH=src npm run build",
+    "server": "json-server --watch ./server/db.json --port 4000",
+    "dev": "concurrently \"yarn server\" \"yarn start:dev\""
   },
   "eslintConfig": {
     "extends": [
