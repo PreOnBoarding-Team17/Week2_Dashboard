@@ -9,7 +9,7 @@ export default function Toggle({ handleToggle }: IToggle) {
         <input id="Toggle" type="checkbox" />
         <span className="Toggle__Slider"></span>
       </label>
-      <label htmlFor="Toggle">상담 중인 요청 보기</label>
+      <label htmlFor="Toggle">상담 중인 요청만 보기</label>
     </div>
   );
 }

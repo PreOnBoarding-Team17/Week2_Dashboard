@@ -2,7 +2,7 @@
 
 .DesktopBar__Container {
   @include navigationbar();
-  @include responsive(mobile) {
+  @include responsive(mobile__medium) {
     display: none;
   }
   height: 70px;
