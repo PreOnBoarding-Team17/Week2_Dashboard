@@ -83,10 +83,9 @@ const Dashboard: React.FC = () => {
         })}
       </div>
 
-      {cardDatas.length === 0 &&
-        ((selectedMethod !== [] && selectedMaterial !== []) || toggle) && (
-          <div className="card-zero">조건에 맞는 견적 요청이 없습니다.</div>
-        )}
+      {cardDatas.length === 0 && (
+        <div className="card-zero">조건에 맞는 견적 요청이 없습니다.</div>
+      )}
     </div>
   );
 };
