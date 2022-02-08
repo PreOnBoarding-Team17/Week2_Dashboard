@@ -1,64 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Card from 'Components/Common/Card';
 import FilterMenu from 'Components/Dashboard/FilterMenu';
-import { callAPI } from 'API';
 import { DataInterface } from 'Utils/Interface';
+import useApi from 'Utils/Hooks/useApi';
 
 import 'Components/Dashboard/scss/Dashboard.scss';
 
 const Dashboard: React.FC = () => {
-  const [toggle, setToggle] = useState<boolean>(false);
-  const [datas, setDatas] = useState<DataInterface[]>([]);
-  const [cardDatas, setCardDatas] = useState<DataInterface[]>([]);
-  const [selectedMethod, setSelectedMethod] = useState<string[]>([]);
-  const [selectedMaterial, setSelectedMaterial] = useState<string[]>([]);
-
-  useEffect(() => {
-    const requestGET = async (): Promise<void> => {
-      await callAPI.get('/').then((res) => {
-        setDatas(res.data);
-        setCardDatas(res.data);
-      });
-    };
-    requestGET();
-  }, []);
-
-  const handleToggle = () => {
-    setToggle(!toggle);
-  };
-
-  const handleReset = () => {
-    setSelectedMethod([]);
-    setSelectedMaterial([]);
-    if (toggle) setToggle(false);
-  };
-
-  console.log(toggle);
-  useEffect(() => {
-    const filterToggle = toggle
-      ? datas.filter((element) => element.status === '상담중')
-      : datas;
-
-    const filterMethod =
-      selectedMethod.length > 0
-        ? filterToggle.filter((element) => {
-            return selectedMethod.every((selectedMethod) =>
-              element.method.find((method) => method === selectedMethod)
-            );
-          })
-        : filterToggle;
-
-    const filterMaterial =
-      selectedMaterial.length > 0
-        ? filterMethod.filter((element) => {
-            return selectedMaterial.every((selectedMaterial) =>
-              element.material.find((material) => material === selectedMaterial)
-            );
-          })
-        : filterMethod;
-
-    setCardDatas(filterMaterial);
-  }, [toggle, selectedMethod, selectedMaterial]);
+  const { cardDatas } = useApi();
 
   return (
     <div className="body-container">
@@ -68,15 +17,7 @@ const Dashboard: React.FC = () => {
           파트너님에게 딱 맞는 요청서를 찾아보세요.
         </h3>
       </div>
-      <FilterMenu
-        toggle={toggle}
-        handleReset={handleReset}
-        handleToggle={handleToggle}
-        selectedMethod={selectedMethod}
-        setSelectedMethod={setSelectedMethod}
-        selectedMaterial={selectedMaterial}
-        setSelectedMaterial={setSelectedMaterial}
-      />
+      <FilterMenu />
       <div className="dash-board">
         {cardDatas.map((data: DataInterface) => {
           return <Card key={data['id']} data={data} />;
