@@ -16,7 +16,6 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     const requestGET = async (): Promise<void> => {
       await callAPI.get('/').then((res) => {
-        console.log(res.data);
         setDatas(res.data);
         setCardDatas(res.data);
       });

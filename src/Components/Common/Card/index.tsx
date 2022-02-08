@@ -53,8 +53,12 @@ const Card: React.FC<CardProps> = ({ data }) => {
         </div>
 
         <div className="card__btn">
-          <Button color="blue" text="요청 내역 보기" />
-          <Button color="white" text="채팅 하기" />
+          <button className="card__btn--blue">
+            요청 내역 보기
+          </button>
+          <butto className="card__btn--white">
+            채팅 하기
+          </button>
         </div>
       </div>
     </div>

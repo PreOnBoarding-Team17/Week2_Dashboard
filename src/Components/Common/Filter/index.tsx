@@ -29,7 +29,6 @@ const Filter: React.FC<IFilter> = ({
     [selected, setSelected, buttonRef]
   );
 
-  // console.log(name);
   return (
     <div className={`select-item filter__select-item__${name}`}>
       <button
