@@ -20,19 +20,23 @@ export interface IFilter {
   name: string;
   options: string[];
   isToggleSelect: boolean;
-  setIsToggleSelect: Function;
   buttonRef: React.RefObject<HTMLButtonElement>;
-  onClickSelect: Function;
+  onClickSelect: (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    name: string
+  ) => void;
   selected: string[];
-  setSelected: Function;
+  setSelected: (arr: string[]) => void;
 }
 
 export interface IFilterMenu {
+  toggle: boolean;
+  handleReset: () => void;
   handleToggle: () => void;
-  methodSelected: string[];
-  setMethodSelected: Function;
-  materalSelected: string[];
-  setMaterialSelected: Function;
+  selectedMethod: string[];
+  setSelectedMethod: (arr: string[]) => void;
+  selectedMaterial: string[];
+  setSelectedMaterial: (arr: string[]) => void;
 }
 
 export interface IModal {
@@ -41,5 +45,6 @@ export interface IModal {
 }
 
 export interface IToggle {
+  toggle: boolean;
   handleToggle: () => void;
 }

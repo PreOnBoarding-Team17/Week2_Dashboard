@@ -9,12 +9,16 @@ import 'Components/Dashboard/scss/Dashboard.scss';
 const Dashboard: React.FC = () => {
   const [toggle, setToggle] = useState<boolean>(false);
   const [datas, setDatas] = useState<DataInterface[]>([]);
+  const [cardDatas, setCardDatas] = useState<DataInterface[]>([]);
   const [selectedMethod, setSelectedMethod] = useState<string[]>([]);
   const [selectedMaterial, setSelectedMaterial] = useState<string[]>([]);
 
   useEffect(() => {
     const requestGET = async (): Promise<void> => {
-      await callAPI.get('/').then((res) => setDatas(res.data));
+      await callAPI.get('/').then((res) => {
+        setDatas(res.data);
+        setCardDatas(res.data);
+      });
     };
     requestGET();
   }, []);
@@ -29,44 +33,32 @@ const Dashboard: React.FC = () => {
     if (toggle) setToggle(false);
   };
 
-  // '가공필터' 선택시 state 변화
-  const handleMethodChange = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    name: string
-  ) => {
-    //setSelectedMethod();
-  };
-
-  // '재료' 필터 선택시 state 변화
-  const handleMaterialChange = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    name: string
-  ) => {
-    //setSelectedMaterial();
-  };
-
+  console.log(toggle);
   useEffect(() => {
     const filterToggle = toggle
       ? datas.filter((element) => element.status === '상담중')
       : datas;
+
     const filterMethod =
       selectedMethod.length > 0
         ? filterToggle.filter((element) => {
-            return selectedMethod.some((selectedMethod) =>
+            return selectedMethod.every((selectedMethod) =>
               element.method.find((method) => method === selectedMethod)
             );
           })
         : filterToggle;
+
     const filterMaterial =
       selectedMaterial.length > 0
         ? filterMethod.filter((element) => {
-            return selectedMaterial.some((selectedMaterial) =>
+            return selectedMaterial.every((selectedMaterial) =>
               element.material.find((material) => material === selectedMaterial)
             );
           })
         : filterMethod;
-    setDatas(filterMaterial);
-  }, []);
+
+    setCardDatas(filterMaterial);
+  }, [toggle, selectedMethod, selectedMaterial]);
 
   return (
     <div className="body-container">
@@ -77,27 +69,16 @@ const Dashboard: React.FC = () => {
         </h3>
       </div>
       <FilterMenu
+        toggle={toggle}
+        handleReset={handleReset}
         handleToggle={handleToggle}
-        methodSelected={selectedMethod}
-        setMethodSelected={setSelectedMethod}
-        materalSelected={selectedMaterial}
-        setMaterialSelected={setSelectedMaterial}
+        selectedMethod={selectedMethod}
+        setSelectedMethod={setSelectedMethod}
+        selectedMaterial={selectedMaterial}
+        setSelectedMaterial={setSelectedMaterial}
       />
       <div className="dash-board">
-        {datas.map((data: DataInterface) => {
-          if (toggle && data.status !== '상담중') return null;
-          else if (
-            selectedMethod.length > 0 &&
-            selectedMethod.filter((element) => data.method.includes(element))
-          )
-            return null;
-          else if (
-            selectedMaterial.length > 0 &&
-            selectedMaterial.filter((element) =>
-              data.material.includes(element)
-            )
-          )
-            return null;
+        {cardDatas.map((data: DataInterface) => {
           return <Card key={data['id']} data={data} />;
         })}
       </div>
