@@ -7,7 +7,6 @@ const Filter: React.FC<IFilter> = ({
   name,
   options,
   isToggleSelect,
-  setIsToggleSelect,
   buttonRef,
   onClickSelect,
   selected,
@@ -17,15 +16,16 @@ const Filter: React.FC<IFilter> = ({
     (option: string) => {
       if (selected.find((item: string) => item === option) === undefined) {
         console.log([...selected, option]);
+        buttonRef.current?.classList.add('focused');
         setSelected([...selected, option]);
       } else {
         console.log(selected.filter((item: string) => item !== option));
+        if (selected.filter((item: string) => item !== option).length === 0)
+          buttonRef.current?.classList.remove('focused');
         setSelected(selected.filter((item: string) => item !== option));
       }
-      setIsToggleSelect('');
-      buttonRef.current?.classList.remove('focused');
     },
-    [selected, setSelected, setIsToggleSelect, buttonRef]
+    [selected, setSelected, buttonRef]
   );
 
   console.log(name);

@@ -24,18 +24,10 @@ const FilterMenu: React.FC<IFilterMenu> = ({
     name: string
   ) => {
     e.preventDefault();
-
-    if (name === 'method') {
-      methodRef.current?.classList.toggle('focused');
-    } else if (name === 'material') {
-      materialRef.current?.classList.toggle('focused');
-    }
     if (isToggleSelect === '') {
       setIsToggleSelect(name);
     } else {
       setIsToggleSelect('');
-      methodRef.current?.classList.remove('focused');
-      materialRef.current?.classList.remove('focused');
     }
   };
 
@@ -55,7 +47,6 @@ const FilterMenu: React.FC<IFilterMenu> = ({
           name="method"
           options={METHOD}
           isToggleSelect={isToggleSelect === 'method'}
-          setIsToggleSelect={setIsToggleSelect}
           buttonRef={methodRef}
           onClickSelect={onClickSelect}
           selected={selectedMethod}
@@ -66,7 +57,6 @@ const FilterMenu: React.FC<IFilterMenu> = ({
           name="material"
           options={MATERIAL}
           isToggleSelect={isToggleSelect === 'material'}
-          setIsToggleSelect={setIsToggleSelect}
           buttonRef={materialRef}
           onClickSelect={onClickSelect}
           selected={selectedMaterial}
