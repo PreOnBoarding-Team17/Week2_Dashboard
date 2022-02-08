@@ -13,6 +13,10 @@
     @media screen and (max-width: 768px) {
       @content;
     }
+  } @else if $device == 'mobile__medium' {
+    @media screen and (max-width: 600px) {
+      @content;
+    }
   } @else if $device == 'mobile__small' {
     @media screen and (max-width: 500px) {
       @content;
