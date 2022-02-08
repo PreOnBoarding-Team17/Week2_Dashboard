@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback } from 'react';
 import 'Components/Common/Filter/scss/Filter.scss';
 import { IFilter } from 'Utils/Interface';
 
