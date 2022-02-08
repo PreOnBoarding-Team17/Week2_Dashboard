@@ -1,4 +1,12 @@
-export {};
+import React from 'react';
+import 'Components/Common/Button/scss/Button.scss';
+interface ButtonProps {
+  color: string;
+  text: string;
+}
 
-// 카드 하단 버튼
-// props로 white를 주면 하얀 버튼을, blue로 주면 파란 버튼을!
+const Button: React.FC<ButtonProps> = ({ color, text }) => {
+  return <button className={`button--${color}`}>{text}</button>;
+};
+
+export default Button;
