@@ -16,10 +16,10 @@ const Filter: React.FC<IFilter> = ({
   const onChangeCheckbox = useCallback(
     (option: string) => {
       if (selected.find((item: string) => item === option) === undefined) {
-        console.log([...selected, option]);
+        // console.log([...selected, option]);
         setSelected([...selected, option]);
       } else {
-        console.log(selected.filter((item: string) => item !== option));
+        // console.log(selected.filter((item: string) => item !== option));
         setSelected(selected.filter((item: string) => item !== option));
       }
       setIsToggleSelect('');
@@ -28,7 +28,7 @@ const Filter: React.FC<IFilter> = ({
     [selected, setSelected, setIsToggleSelect, buttonRef]
   );
 
-  console.log(name);
+  // console.log(name);
   return (
     <div className={`select-item filter__select-item__${name}`}>
       <button

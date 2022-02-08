@@ -26,7 +26,17 @@
     margin: 24px 0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
+  }
+
+  .flex-change {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    @include responsive(tablet) {
+      justify-content: space-between;
+    }
   }
 
   .card-zero {
