@@ -4,12 +4,13 @@ import Filter from 'Components/Common/Filter';
 import Toggle from 'Components/Common/Toggle';
 import 'Components/Dashboard/scss/FilterMenu.scss';
 import { IFilterMenu } from 'Utils/Interface';
+import RefreshIcon from 'Assets/RefreshIcon.png';
 
 const FilterMenu: React.FC<IFilterMenu> = ({
-  methodSelected,
-  setMethodSelected,
-  materalSelected,
-  setMaterialSelected,
+  selectedMethod,
+  setSelectedMethod,
+  selectedMaterial,
+  setSelectedMaterial,
 }) => {
   const [toggle, setToggle] = useState<boolean>(false);
   const [isToggleSelect, setIsToggleSelect] = useState<string>('');
@@ -40,6 +41,14 @@ const FilterMenu: React.FC<IFilterMenu> = ({
     }
   };
 
+  const onClickReset = () => {
+    setSelectedMethod([]);
+    setSelectedMaterial([]);
+    setIsToggleSelect('');
+    methodRef.current?.classList.remove('focused');
+    materialRef.current?.classList.remove('focused');
+  };
+
   // console.log(toggle);
   return (
     <div className="filter">
@@ -52,8 +61,8 @@ const FilterMenu: React.FC<IFilterMenu> = ({
           setIsToggleSelect={setIsToggleSelect}
           buttonRef={methodRef}
           onClickSelect={onClickSelect}
-          selected={methodSelected}
-          setSelected={setMethodSelected}
+          selected={selectedMethod}
+          setSelected={setSelectedMethod}
         />
         <Filter
           title={MATERIAL_NAME}
@@ -63,9 +72,15 @@ const FilterMenu: React.FC<IFilterMenu> = ({
           setIsToggleSelect={setIsToggleSelect}
           buttonRef={materialRef}
           onClickSelect={onClickSelect}
-          selected={materalSelected}
-          setSelected={setMaterialSelected}
+          selected={selectedMaterial}
+          setSelected={setSelectedMaterial}
         />
+        {selectedMethod.length + selectedMaterial.length > 0 && (
+          <button className="filter__select-reset" onClick={onClickReset}>
+            <img src={RefreshIcon} alt="필터링 리셋" />
+            필터링 리셋
+          </button>
+        )}
       </div>
       <div className="filter__toggle-item">
         <Toggle handleToggle={handleToggle} />
