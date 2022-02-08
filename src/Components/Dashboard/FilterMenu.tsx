@@ -7,6 +7,8 @@ import { IFilterMenu } from 'Utils/Interface';
 import RefreshIcon from 'Assets/RefreshIcon.png';
 
 const FilterMenu: React.FC<IFilterMenu> = ({
+  toggle,
+  handleReset,
   handleToggle,
   selectedMethod,
   setSelectedMethod,
@@ -37,9 +39,8 @@ const FilterMenu: React.FC<IFilterMenu> = ({
     }
   };
 
-  const onClickReset = () => {
-    setSelectedMethod([]);
-    setSelectedMaterial([]);
+  const handleFilterReset = () => {
+    handleReset();
     setIsToggleSelect('');
     methodRef.current?.classList.remove('focused');
     materialRef.current?.classList.remove('focused');
@@ -71,15 +72,15 @@ const FilterMenu: React.FC<IFilterMenu> = ({
           selected={selectedMaterial}
           setSelected={setSelectedMaterial}
         />
-        {selectedMethod.length + selectedMaterial.length > 0 && (
-          <button className="filter__select-reset" onClick={onClickReset}>
+        {(selectedMethod.length + selectedMaterial.length > 0 || toggle) && (
+          <button className="filter__select-reset" onClick={handleFilterReset}>
             <img src={RefreshIcon} alt="필터링 리셋" />
             필터링 리셋
           </button>
         )}
       </div>
       <div className="filter__toggle-item">
-        <Toggle handleToggle={handleToggle} />
+        <Toggle handleToggle={handleToggle} toggle={toggle} />
       </div>
     </div>
   );

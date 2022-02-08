@@ -31,6 +31,8 @@ export interface IFilter {
 }
 
 export interface IFilterMenu {
+  toggle: boolean;
+  handleReset: () => void;
   handleToggle: () => void;
   selectedMethod: string[];
   setSelectedMethod: (arr: string[]) => void;
@@ -44,5 +46,6 @@ export interface IModal {
 }
 
 export interface IToggle {
+  toggle: boolean;
   handleToggle: () => void;
 }

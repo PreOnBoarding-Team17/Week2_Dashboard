@@ -44,7 +44,7 @@ const Dashboard: React.FC = () => {
   ) => {
     //setSelectedMaterial();
   };
-
+  console.log(toggle);
   useEffect(() => {
     const filterToggle = toggle
       ? datas.filter((element) => element.status === '상담중')
@@ -77,6 +77,8 @@ const Dashboard: React.FC = () => {
         </h3>
       </div>
       <FilterMenu
+        toggle={toggle}
+        handleReset={handleReset}
         handleToggle={handleToggle}
         selectedMethod={selectedMethod}
         setSelectedMethod={setSelectedMethod}
