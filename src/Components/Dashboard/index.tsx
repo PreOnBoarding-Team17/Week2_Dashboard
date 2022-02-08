@@ -12,12 +12,15 @@ const Dashboard: React.FC = () => {
   const [selectedMaterial, setSelectedMaterial] = useState<string[]>([]);
   const [toggle, setToggle] = useState<boolean>(false);
 
+  const [cardCount, setCardCount] = useState(-1);
+
   const requestGET = async (): Promise<void> => {
     await callAPI.get('/').then((res) => setDatas(res.data));
   };
 
   useEffect(() => {
     requestGET();
+    setCardCount(datas.length);
   }, []);
 
   return (
@@ -36,22 +39,31 @@ const Dashboard: React.FC = () => {
       />
       <div className="dash-board">
         {datas.map((data: DataInterface) => {
-          if (toggle && data.status !== '상담중') return null;
-          else if (
+          if (toggle && data.status !== '상담중') {
+            setCardCount(cardCount - 1);
+            return null;
+          } else if (
             selectedMethod.length > 0 &&
             selectedMethod.filter((element) => data.method.includes(element))
-          )
+          ) {
+            setCardCount(cardCount - 1);
             return null;
-          else if (
+          } else if (
             selectedMaterial.length > 0 &&
             selectedMaterial.filter((element) =>
               data.material.includes(element)
             )
-          )
+          ) {
+            setCardCount(cardCount - 1);
             return null;
+          }
           return <Card key={data['id']} data={data} />;
         })}
       </div>
+
+      {cardCount === 0 && (
+        <div className="card-zero">조건에 맞는 견적 요청이 없습니다.</div>
+      )}
     </div>
   );
 };

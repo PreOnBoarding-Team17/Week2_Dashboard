@@ -2,6 +2,7 @@ import React from 'react';
 import { CardProps } from 'Utils/Interface';
 import { CARD_ELEMENTS } from 'Utils/Constants';
 import 'Components/Common/Card/scss/Card.scss';
+import Button from '../Button';
 
 const Card: React.FC<CardProps> = ({ data }) => {
   const {
@@ -52,8 +53,8 @@ const Card: React.FC<CardProps> = ({ data }) => {
         </div>
 
         <div className="card__btn">
-          <button className="card__btn--watch">요청 내역 보기</button>
-          <button className="card__btn--chatting">채팅 하기</button>
+          <Button color="blue" text="요청 내역 보기" />
+          <Button color="white" text="채팅 하기" />
         </div>
       </div>
     </div>

@@ -1,34 +1,30 @@
 @import '/src/Utils/Styles/variables';
 @import '/src/Utils/Styles/mixin';
+
 .card-wrapper {
-  @include media('(max-width:650px)') {
+  width: 32%;
+  margin-bottom: 16px;
+
+  @include responsive(tablet) {
+    width: 49%;
+  }
+
+  @include responsive(mobile) {
     width: 100%;
   }
 }
 
 .card {
   padding: 20px 16px;
-  width: 25vw;
-  height: 308px;
+  box-sizing: border-box;
+
+  width: 100%;
+  height: 356px;
   border: 1px solid $lightgray;
   border-radius: 4px;
 
-  margin-bottom: 16px;
   font-size: 14px;
   line-height: 1.5;
-
-  @include media('(max-width: 1300px)') {
-    width: 35vw;
-  }
-
-  @include media('(max-width:900px)') {
-    width: 30vw;
-  }
-  @include media('(max-width:650px)') {
-    width: 100%;
-    box-sizing: border-box;
-    height: 344px;
-  }
 
   &:hover {
     border: 1px solid $blue;
@@ -68,7 +64,7 @@
   }
 
   &__elements {
-    margin: 16px 0 20px 0;
+    margin: 24px 0 20px 0;
     width: 100%;
 
     &--content {
@@ -85,30 +81,6 @@
         font-weight: 700;
         flex: 1;
       }
-    }
-  }
-
-  &__btn {
-    &--watch {
-      background-color: $blue;
-      color: #fff;
-      border: none;
-      margin-right: 8px;
-    }
-    &--chatting {
-      background-color: #fff;
-      border: 1px solid $blue;
-      color: $blue;
-    }
-
-    &--watch,
-    &--chatting {
-      padding: 6px 12px;
-      height: 32px;
-      text-align: center;
-      border-radius: 4px;
-      box-sizing: border-box;
-      cursor: pointer;
     }
   }
 }
