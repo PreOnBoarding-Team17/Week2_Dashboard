@@ -8,13 +8,12 @@
 
 .card {
   padding: 20px 16px;
-  width: 334px;
   width: 25vw;
   height: 308px;
-  border: 1px solid $lightwhite;
+  border: 1px solid $lightgray;
   border-radius: 4px;
 
-  margin: 0 0 16px 0;
+  margin-bottom: 16px;
   font-size: 14px;
   line-height: 1.5;
 
@@ -36,7 +35,7 @@
   }
 
   &__header {
-    border-bottom: 1px solid $lightwhite;
+    border-bottom: 1px solid $lightgray;
     height: 90px;
 
     &--title {
@@ -69,8 +68,7 @@
   }
 
   &__elements {
-    margin-top: 16px;
-    margin-bottom: 20px;
+    margin: 16px 0 20px 0;
     width: 100%;
 
     &--content {
