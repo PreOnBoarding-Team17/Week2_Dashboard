@@ -9,7 +9,7 @@
 
 <br/>
 
-[🌍 배포 링크]()
+[🌍 배포 링크](https://dashboard-17seoul.herokuapp.com/)
 
 <br />
 
@@ -22,6 +22,10 @@
 <br />
 
 ## 2. 구현 기능 📍
+
+```plaintext
+💡 본 기능은 기업에서 제공한 Figma 템플릿에 기반하여 구현했습니다.
+```
 
 #### 네비게이션바
 
@@ -93,6 +97,19 @@ src
 
 ## 5. 프로젝트 제작 과정 ✍🏻
 
+#### [1] 커밋 컨벤션은 다음과 같이 정했습니다 ✨
+
+![스크린샷 2022-02-09 오전 2 30 03](https://user-images.githubusercontent.com/79933417/153044688-8ad56c3c-e80e-4596-b1af-22dabcd47b4c.png)
+
+#### [2] 풀 리퀘스트 시 팀원들과 코드 리뷰를 진행했습니다 🔥
+
+![스크린샷 2022-02-09 오전 2 30 57](https://user-images.githubusercontent.com/79933417/153044812-cad598a7-82c7-44d0-a0f3-6fb6a121ceba.png)
+
+#### [3] 이슈를 작성해 서로의 진행상황을 공유했습니다 👀
+
+![스크린샷 2022-02-09 오전 2 31 30](https://user-images.githubusercontent.com/79933417/153045481-ce093685-87f0-4497-b5fe-0516103a66e1.png)
+
+
 <br/>
 
 ## 6. 프로젝트 설치 및 실행 ✨
@@ -102,18 +119,18 @@ src
 1. Git Clone
 
 ```plaintext
-$ git clone https://github.com/PreOnBoarding-Team17/Week2_Dashboard.git
+git clone https://github.com/PreOnBoarding-Team17/Week2_Dashboard.git
 ```
 
 2. 프로젝트 패키지 설치
 
 ```plaintext
-$ yarn install
+yarn install
 ```
 
 3. 프로젝트 실행
 
 ```plaintext
-concurrently 패키지가 설치돼있어 JSON-Server와 Client Server가 동시에 실행됩니다.
-$ yarn dev
+concurrently를 적용해 JSON-Server와 Client Server가 동시에 실행됩니다.
+yarn dev
 ```
