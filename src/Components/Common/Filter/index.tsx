@@ -1,47 +1,76 @@
-import React, { useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import 'Components/Common/Filter/scss/Filter.scss';
 import { IFilter } from 'Utils/Interface';
-import ArrowDownIcon from 'Assets/ArrowDown.png';
 
-const Filter: React.FC<IFilter> = ({ title, name, options }) => {
-  const [isToggle, setIsToggle] = useState<boolean>(false);
+const Filter: React.FC<IFilter> = ({
+  title,
+  name,
+  options,
+  isToggleSelect,
+  setIsToggleSelect,
+  buttonRef,
+  onClickSelect,
+  selected,
+  setSelected,
+}) => {
+  const onChangeCheckbox = useCallback(
+    (option: string) => {
+      if (selected.find((item: string) => item === option) === undefined) {
+        console.log([...selected, option]);
+        setSelected([...selected, option]);
+      } else {
+        console.log(selected.filter((item: string) => item !== option));
+        setSelected(selected.filter((item: string) => item !== option));
+      }
+      setIsToggleSelect('');
+      buttonRef.current?.classList.remove('focused');
+    },
+    [selected, setSelected, setIsToggleSelect, buttonRef]
+  );
 
-  const onClickSelect = () => {
-    // e.preventDefault();
-    console.log(!isToggle);
-    setIsToggle(!isToggle);
-  };
-
+  console.log(name);
   return (
     <div className={`select-item filter__select-item__${name}`}>
-      <form name={name}>
-        <button
-          type="button"
-          className="select-item__title"
-          onClick={onClickSelect}
-        >
-          {title}
-          <img src={ArrowDownIcon} alt="arrow down" />
-        </button>
-        {isToggle && (
-          <ul className="select-item__checkbox-wrap">
-            {options.map((option: string, index: number) => {
-              return (
-                <li key={index} className="checkbox-item">
-                  <input type="checkbox" id={option} />
-
-                  <label htmlFor={option}>
-                    <span></span>
-                    {option}
-                  </label>
-                </li>
-              );
-            })}
-          </ul>
+      <button
+        type="button"
+        className="select-item__title"
+        onClick={(e) => onClickSelect(e, name)}
+        ref={buttonRef}
+      >
+        {title}
+        {selected.length > 0 && (
+          <span className="select-item__title__count">({selected.length})</span>
         )}
-      </form>
+        <span className="arrow-down-icon"></span>
+      </button>
+      {isToggleSelect && (
+        <ul className="select-item__checkbox-wrap">
+          {options.map((option: string, index: number) => {
+            const isChecked =
+              selected.find((item: string) => item === option) !== undefined
+                ? true
+                : false;
+            return (
+              <li key={index} className="checkbox-item">
+                <input
+                  type="checkbox"
+                  id={option}
+                  name={option}
+                  value={option}
+                  onChange={(e) => onChangeCheckbox(e.target.value)}
+                  checked={isChecked}
+                />
+                <label htmlFor={option}>
+                  <span></span>
+                  {option}
+                </label>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 };
 
-export default Filter;
+export default React.memo(Filter);
