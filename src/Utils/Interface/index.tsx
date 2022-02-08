@@ -28,6 +28,7 @@ export interface IFilter {
 }
 
 export interface IFilterMenu {
+  handleToggle: () => void;
   methodSelected: string[];
   setMethodSelected: Function;
   materalSelected: string[];
