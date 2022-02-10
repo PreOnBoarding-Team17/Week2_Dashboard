@@ -11,9 +11,6 @@
 
 [🌍 배포 링크](https://dashboard-17seoul.herokuapp.com/)
 
-
-[⭐️ 프로젝트 후기 - 블로그](https://mu-mu-syo.tistory.com/61)
-
 <br />
 
 ## 1. 프로젝트 소개 🚀
